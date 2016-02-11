@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     EPP Package Build                                                        
+     ====================================================================== -->
+<project name="EPP Package Build" default="default">
+	<description>
+    	EPP Package Build
+    </description>
+
+	<!-- Change this if building on build.eclipse.org to "server"; "local" otherwise -->
+	<property name="org.eclipse.epp.buildlocation" value="server" />
+
+	<!-- targetRepository needs to be set via Java property -->
+	<property name="targetRepository" value="unset"/>
+
+	<!-- ================================= 
+          target: default              
+         ================================= -->
+	<target name="default">
+		<echo message="There is no default target." />
+	</target>
+
+	<!-- ================================= 
+          target: removeCategories              
+         ================================= -->
+    
+	<target name="removeCategories">
+		<p2.remove.iu destination="file://${targetRepository}">
+		    <iu query="property[@name='org.eclipse.equinox.p2.name' @value='Uncategorized']" />
+			<!-- <iu id="Default" /> -->
+		</p2.remove.iu>
+	</target>
+
+	<target name="mirror">
+	    <p2.mirror ignoreerrors="true" verbose="true" validate="true">
+	        <slicingoptions 
+	            followstrict="false" 
+	            includeoptional="true" 
+	            includenongreedy="true" 
+	            includefeatures="true" 
+	            latestversiononly="false"/>
+	        <source>
+	                <sort>
+			            <fileset dir="/tmp/mars">
+    						<include name="*"/>
+						</fileset>
+						<reverse xmlns="antlib:org.apache.tools.ant.types.resources.comparators">
+							<date />
+						</reverse>
+	                </sort>
+	        </source>
+	        <destination location="${targetRepository}" name="EPP Mars Package Repository" append="true" compressed="true" />
+	    </p2.mirror>
+	</target>
+
+
+</project>

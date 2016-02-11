@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (C) 2013, 2015 EclipseSource and others.
+  All rights reserved. This program and the accompanying materials
+  are made available under the terms of the Eclipse Public License v1.0
+  which accompanies this distribution, and is available at
+  http://www.eclipse.org/legal/epl-v10.html
+
+  Contributors:
+     EclipseSource - initial implementation
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <name>Eclipse Packaging Project (EPP) parent</name>
+
+  <groupId>org.eclipse.epp</groupId>
+  <artifactId>org.eclipse.epp-parent</artifactId>
+  <version>4.5.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <properties>
+    <java.version>1.7</java.version>
+    <maven.version>3.1.1</maven.version>
+    <tycho.version>0.23.1</tycho.version>
+    <tycho.extras.version>${tycho.version}</tycho.extras.version>
+    <tycho.scmUrl>scm:git:git://git.eclipse.org/gitroot/epp/org.eclipse.epp.packages.git</tycho.scmUrl>
+    <cbi.version>1.1.2</cbi.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.resources.version>2.6</maven.resources.version>
+    <maven.build.timestamp.format>yyyyMMdd-HHmm</maven.build.timestamp.format>
+    <build>${maven.build.timestamp}</build>
+    <!-- The location that is used to assemble the single EPP configuration p2 repository -->
+    <eclipse.epp.archiveDirectory>${basedir}/../../archive/</eclipse.epp.archiveDirectory>
+    <!-- The location that is used to assemble the single EPP configuration p2 repository -->
+    <eclipse.epp.targetRepository>${eclipse.epp.archiveDirectory}/repository/</eclipse.epp.targetRepository>
+    <!-- ID used to generate the filename of the packages -->
+    <eclipse.simultaneous.release.id>mars-1</eclipse.simultaneous.release.id>
+    <!-- Timestamp used in various places, e.g. the about dialog (see about.mappings) -->
+    <eclipse.simultaneous.release.build>${maven.build.timestamp}</eclipse.simultaneous.release.build>
+    <!-- Human readable name of the release, e.g. used in the about dialog (see about.mappings) -->
+    <eclipse.simultaneous.release.name>Mars.1 Release (4.5.1)</eclipse.simultaneous.release.name>
+    <!-- Upstream p2 repository, used as a source for pre-compiled build artifacts -->
+    <eclipse.simultaneous.release.repository>http://download.eclipse.org/releases/maintenance/</eclipse.simultaneous.release.repository>
+  </properties>
+
+  <!--
+     See maven-enforcer-plugin configuration to actually break the build if run with older maven.
+     prerequisites section is kept for now as even if it doesn't break the build, it is used by
+     other plugins like versions-maven-plugin which check and warn for using plugins with older
+     than they require Maven version.
+  -->
+  <prerequisites>
+    <maven>${maven.version}</maven>
+  </prerequisites>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>eclipse-tycho</id>
+      <url>https://oss.sonatype.org/content/repositories/public/</url>
+    </pluginRepository>
+    <pluginRepository>
+      <id>eclipse-cbi</id>
+      <url>https://repo.eclipse.org/content/repositories/releases/</url>
+    </pluginRepository>
+  </pluginRepositories>
+
+  <repositories>
+    <repository>
+      <id>eclipse-simultaneous-release</id>
+      <layout>p2</layout>
+      <url>${eclipse.simultaneous.release.repository}</url>
+    </repository>
+    <repository>
+      <id>license-feature</id>
+      <url>http://download.eclipse.org/cbi/updates/license/</url>
+      <layout>p2</layout>
+    </repository>
+    <repository>
+      <id>sweet</id>
+      <layout>p2</layout>
+      <url>http://exyte.com/sweet/updates/</url>
+    </repository>
+    <repository>
+      <id>sweet e4</id>
+      <layout>p2</layout>
+      <url>http://exyte.com/sweet.e4/updates/</url>
+    </repository>
+  </repositories>
+
+  <build>
+    <plugins>
+
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>tycho-maven-plugin</artifactId>
+        <version>${tycho.version}</version>
+        <extensions>true</extensions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>target-platform-configuration</artifactId>
+        <version>${tycho.version}</version>
+        <configuration>
+          <includePackedArtifacts>true</includePackedArtifacts>
+          <!-- The Parallel Package feature.xml includes a number of other
+               features that are marked as optional, and unfortunately they
+               seem to be missing in Mars. Ignoring these options features
+               for now.
+          <dependency-resolution>
+            <optionalDependencies>ignore</optionalDependencies>
+          </dependency-resolution>
+            -->
+          <environments>
+            <environment>
+              <os>linux</os>
+              <ws>gtk</ws>
+              <arch>x86</arch>
+            </environment>
+            <environment>
+              <os>linux</os>
+              <ws>gtk</ws>
+              <arch>x86_64</arch>
+            </environment>
+            <environment>
+              <os>win32</os>
+              <ws>win32</ws>
+              <arch>x86</arch>
+            </environment>
+            <environment>
+              <os>win32</os>
+              <ws>win32</ws>
+              <arch>x86_64</arch>
+            </environment>
+            <environment>
+              <os>macosx</os>
+              <ws>cocoa</ws>
+              <arch>x86_64</arch>
+            </environment>
+          </environments>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>tycho-packaging-plugin</artifactId>
+        <version>${tycho.version}</version>
+        <dependencies>
+          <dependency>
+            <groupId>org.eclipse.tycho.extras</groupId>
+            <artifactId>tycho-buildtimestamp-jgit</artifactId>
+            <version>${tycho.extras.version}</version>
+          </dependency>
+          <dependency> 
+            <groupId>org.eclipse.tycho.extras</groupId> 
+            <artifactId>tycho-sourceref-jgit</artifactId> 
+            <version>${tycho.extras.version}</version> 
+          </dependency> 
+        </dependencies>
+        <configuration>
+          <timestampProvider>jgit</timestampProvider>
+          <jgit.dirtyWorkingTree>ignore</jgit.dirtyWorkingTree>
+          <format>yyyyMMdd-HHmm</format>
+          <sourceReferences> 
+            <generate>true</generate> 
+          </sourceReferences> 
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>tycho-p2-repository-plugin</artifactId>
+        <version>${tycho.version}</version>
+        <configuration>
+          <includeAllDependencies>true</includeAllDependencies>
+          <compress>true</compress>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>tycho-source-plugin</artifactId>
+        <version>${tycho.version}</version>
+        <executions>
+          <execution>
+            <id>plugin-source</id>
+            <goals>
+              <goal>plugin-source</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>1.8</version>
+        <executions>
+          <execution>
+            <id>regex-property</id>
+            <goals>
+              <goal>regex-property</goal>
+            </goals>
+            <configuration>
+              <name>eclipse.epp.id</name>
+              <value>${project.artifactId}</value>
+              <regex>epp\.package\.(\d*)</regex>
+              <replacement>$1</replacement>
+              <failIfNoMatch>false</failIfNoMatch>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <version>1.4</version>
+        <executions>
+          <execution>
+            <id>enforce-versions</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <requireMavenVersion>
+                  <version>${maven.version}</version>
+                </requireMavenVersion>
+                <requireJavaVersion>
+                  <version>${java.version}</version>
+                </requireJavaVersion>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+    </plugins>
+
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>build-helper-maven-plugin</artifactId>
+          <version>1.8</version>
+        </plugin>
+        <plugin>
+          <groupId>org.eclipse.tycho</groupId>
+          <artifactId>target-platform-configuration</artifactId>
+          <version>${tycho.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.eclipse.tycho</groupId>
+          <artifactId>tycho-compiler-plugin</artifactId>
+          <version>${tycho.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.eclipse.tycho</groupId>
+          <artifactId>tycho-packaging-plugin</artifactId>
+          <version>${tycho.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.eclipse.tycho</groupId>
+          <artifactId>tycho-surefire-plugin</artifactId>
+          <version>${tycho.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.eclipse.tycho</groupId>
+          <artifactId>tycho-source-plugin</artifactId>
+          <version>${tycho.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.eclipse.tycho.extras</groupId>
+          <artifactId>tycho-p2-extras-plugin</artifactId>
+          <version>${tycho.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.eclipse.tycho</groupId>
+          <artifactId>tycho-p2-director-plugin</artifactId>
+          <version>${tycho.version}</version>
+          <executions>
+            <execution>
+              <id>materialize-products</id>
+              <goals>
+                <goal>materialize-products</goal>
+              </goals>
+            </execution>
+            <execution>
+              <id>archive-products</id>
+                <phase>pre-integration-test</phase>
+                <goals>
+                  <goal>archive-products</goal>
+                </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <formats>
+              <linux>tar.gz</linux>
+              <macosx>tar.gz</macosx>
+              <win32>zip</win32>
+            </formats>
+            <products>
+              <product>
+                <id>${project.artifactId}</id>
+                <rootFolder>eclipse</rootFolder>
+                <rootFolders>
+                  <macosx>Eclipse.app</macosx>
+                </rootFolders>
+                <archiveFileName>${build}_eclipse-${eclipse.epp.id}-${eclipse.simultaneous.release.id}</archiveFileName>
+              </product>
+            </products>
+            <profile>${project.artifactId}</profile>
+          </configuration>
+        </plugin>
+        <plugin>
+          <artifactId>maven-antrun-plugin</artifactId>
+          <version>1.6</version>
+          <executions>
+            <execution>
+              <id>copy-zips-to-archive-folder</id>
+              <phase>pre-integration-test</phase>
+              <configuration>
+                <target>
+                  <copy todir="${basedir}/../../archive">
+                    <fileset dir="${project.build.directory}/products">
+                      <include name="*.zip" />
+                      <include name="*.tar.gz" />
+                    </fileset>
+                  </copy>
+                </target>
+              </configuration>
+              <goals>
+                <goal>run</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <profiles>
+
+    <profile>
+      <id>eclipse-sign-jar</id>
+
+      <pluginRepositories>
+        <pluginRepository>
+          <id>eclipse-cbi</id>
+          <url>https://repo.eclipse.org/content/groups/cbi/</url>
+        </pluginRepository>
+      </pluginRepositories>
+
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.eclipse.tycho.extras</groupId>
+            <artifactId>tycho-pack200a-plugin</artifactId>
+            <version>${tycho.extras.version}</version>
+            <executions>
+              <execution>
+                <id>pack200-normalize</id>
+                <goals>
+                  <goal>normalize</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+
+          <plugin>
+            <groupId>org.eclipse.cbi.maven.plugins</groupId>
+            <artifactId>eclipse-jarsigner-plugin</artifactId>
+            <version>${cbi.version}</version>
+            <executions>
+              <execution>
+                <id>sign</id>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+
+          <plugin>
+            <groupId>org.eclipse.tycho.extras</groupId>
+            <artifactId>tycho-pack200b-plugin</artifactId>
+            <version>${tycho.extras.version}</version>
+            <executions>
+              <execution>
+                <id>pack200-pack</id>
+                <goals>
+                  <goal>pack</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+
+          <plugin>
+            <groupId>org.eclipse.tycho</groupId>
+            <artifactId>tycho-p2-plugin</artifactId>
+            <version>${tycho.version}</version>
+            <executions>
+              <execution>
+                <id>p2-metadata</id>
+                <goals>
+                  <goal>p2-metadata</goal>
+                </goals>
+                <phase>package</phase>
+              </execution>
+            </executions>
+            <configuration>
+              <defaultP2Metadata>false</defaultP2Metadata>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>update-branding-plugins-about.mappings</id>
+      <activation>
+        <file>
+          <exists>${basedir}/about.mappings</exists>
+        </file>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-resources-plugin</artifactId>
+            <version>${maven.resources.version}</version>
+            <executions>
+              <execution>
+                <id>process-about.mappings</id>
+                <phase>prepare-package</phase>
+                <configuration>
+                  <outputDirectory>${project.build.directory}</outputDirectory>
+                  <overwrite>true</overwrite>
+                  <resources>
+                    <resource>
+                      <directory>${basedir}</directory>
+                      <includes>
+                        <include>about.mappings</include>
+                      </includes>
+                      <filtering>true</filtering>
+                    </resource>
+                  </resources>
+                </configuration>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.eclipse.tycho</groupId>
+            <artifactId>tycho-packaging-plugin</artifactId>
+            <version>${tycho.version}</version>
+            <configuration>
+              <additionalFileSets>
+                <fileSet>
+                  <directory>${project.build.directory}</directory>
+                  <includes>
+                    <include>about.mappings</include>
+                  </includes>
+                </fileSet>
+              </additionalFileSets>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!--
+       This profile needs to stay disabled for release builds, but may serve as a testing
+       facility when carrying out tests with various p2 repositories. One possible use case
+       is to add a p2 repository to the build that provides newer or different artifacts.
+       In order to do this one needs to activate this profile explicitely and provide the
+       p2 repository URL with a Java property.
+
+       Example: -Depp.wormhole.repository=file:///tmp/myown.p2.repo/
+      -->
+    <profile>
+      <id>p2.wormhole</id>
+      <activation>
+        <property>
+          <name>epp.wormhole.repository</name>
+        </property>
+      </activation>
+      <repositories>
+        <repository>
+          <id>epp.wormhole.repository</id>
+          <layout>p2</layout>
+          <url>${epp.wormhole.repository}</url>
+        </repository>
+      </repositories>
+    </profile>
+
+  </profiles>
+
+</project>

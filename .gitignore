@@ -1,0 +1,16 @@
+*~
+*.bak
+bin/
+bin/**
+/CVS/*
+*/CVS/*
+.cvsignore
+*/.cvsignore
+.DS_Store*
+ehthumbs.db
+Icon?
+*.swp
+Thumbs.db
+*.tmp
+target/
+/archive
