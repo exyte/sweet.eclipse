@@ -35,7 +35,10 @@
       <import feature="org.eclipse.epp.package.common.feature"/>
       <import feature="org.eclipse.equinox.p2.user.ui"/>
       <import feature="org.eclipse.help"/>
-      <import feature="org.eclipse.jdt"/>
+      
+      <!--import feature="org.eclipse.jdt"/-->
+      <import feature="com.exyte.sweet.e4.jdt.feature"/>
+      
       <import feature="org.eclipse.jgit"/>
 
       <!-- depends on: org.eclipse.platform.feature.group 3.6.0 -->
