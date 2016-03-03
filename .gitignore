@@ -8,7 +8,6 @@ bin/**
 */.cvsignore
 .DS_Store*
 ehthumbs.db
-Icon?
 *.swp
 Thumbs.db
 *.tmp
