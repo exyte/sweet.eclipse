@@ -77,5 +77,21 @@
             productId="com.exyte.sweet.package.java.product">
       </introProductBinding>
    </extension-->
+
+   <extension point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="com.exyte.sweet.e4.workbench.themes.ThemeSwitchHandler"
+            id="com.exyte.sweet.e4.theme.switch"
+            name="Theme">
+         <commandParameter id="org.eclipse.ui.commands.radioStateParameter" name="Name" optional="false"/>
+         <state id="org.eclipse.ui.commands.radioState">
+            <class class="org.eclipse.ui.handlers.RadioState">
+               <parameter name="default" value="classic"/>
+               <parameter name="persisted" value="true"/>
+            </class>
+         </state>
+      </command>
+   </extension>
+
 </plugin>
 
