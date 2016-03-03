@@ -70,12 +70,12 @@
          </property>
       </product>
    </extension>
-   <extension
+   <!--extension
          point="org.eclipse.ui.intro">
       <introProductBinding
             introId="org.eclipse.ui.intro.universal"
             productId="com.exyte.sweet.package.java.product">
       </introProductBinding>
-   </extension>
+   </extension-->
 </plugin>
 
