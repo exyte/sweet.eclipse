@@ -7,5 +7,6 @@ Bundle-Vendor: Eclipse Packaging Project
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.eclipse.platform,
  org.eclipse.equinox.app,
- com.exyte.sweet.e4.workbench
+ com.exyte.sweet.e4.workbench,
+ org.eclipse.ui
 Eclipse-BundleShape: dir
