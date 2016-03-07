@@ -8,137 +8,15 @@
 	<link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="css/ideal-image-slider.css">
 	<link rel="stylesheet" href="css/default.css">
+	<link rel="stylesheet" href="css/main.css">
 	<link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
-
-	<style type="text/css">
-		body {
-			-webkit-font-smoothing: antialiased;
-			font-family: "Myriad Set Pro", "PT Sans", "Lucida Grande", "Helvetica Neue", "Helvetica", "Arial", "Verdana", "sans-serif";
-		}
-		#header {
-			font-size: 14px;
-			font-weight: normal;
-			overflow:auto;
- 		}
- 		#header a {
- 			padding-left: 2em;
- 			line-height: 1.4737em;
-			color: #333333;
- 		}
- 		#header a:visited, a:link, a:active {
-    		text-decoration: none;
-		}
-		#header a:hover {
-		    text-decoration: none;
-		    color: #0088CC;
-		}
- 		#logo {
- 			float:left;
- 			font-size: 32px;
- 		}
-		#menu {
- 			margin-top: 15px;
-			float:right;
-		}
-		#prev, #next {
-			position: absolute;
-			top: 40%;
-			width: 60px;
-			height: 60px;
-			background-repeat: no-repeat;
-			background-color: rgba(0,0,0,0.5);
-		    border-radius: 50px;
-		    background-size: 48px 48px;
-		    cursor: pointer;
-		    z-index: 20;
-		    opacity: 0.5;
-			text-indent: -9999px;
-			-webkit-transform: translateY(-50%);
-				-ms-transform: translateY(-50%);
-					transform: translateY(-50%);
-			-webkit-transition: 0.3s ease-out;
-			   -moz-transition: 0.3s ease-out;
-				 -o-transition: 0.3s ease-out;
-					transition: 0.3s ease-out;
-		}
-		#prev {
-			right: 0;
-		    background-position: 35% 50%;
-    		background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+Cjxzdmcgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6c3ZnPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiA8Zz4KICA8dGl0bGU+TGF5ZXIgMTwvdGl0bGU+CiAgPHBvbHlnb24gZmlsbD0iI2ZmZmZmZiIgaWQ9InN2Z18xIiBwb2ludHM9IjM1MiwxMTUuNCAzMzEuMyw5NiAxNjAsMjU2IDMzMS4zLDQxNiAzNTIsMzk2LjcgMjAxLjUsMjU2ICIvPgogPC9nPgo8L3N2Zz4=");
-		}
-		#next {
-			left: 0;
-		    background-position: 65% 50%;
-    		background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+Cjxzdmcgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6c3ZnPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiA8Zz4KICA8dGl0bGU+TGF5ZXIgMTwvdGl0bGU+CiAgPHBvbHlnb24gZmlsbD0iI2ZmZmZmZiIgaWQ9InN2Z18xIiBwb2ludHM9IjE2MCwxMTUuNCAxODAuNyw5NiAzNTIsMjU2IDE4MC43LDQxNiAxNjAsMzk2LjcgMzEwLjUsMjU2ICIvPgogPC9nPgo8L3N2Zz4=");
-		}
-		#prev:hover, #next:hover { opacity: 1; }
-
-		h2 {
-		    font-size: 52px;
-		    line-height: 1.08654;
-		    letter-spacing: -0.014em;
-		    font-weight: 200;
-		    margin-top: 1.1em;
-		    margin-bottom: 0.45em;
-		}
-
-		p {
-			font-size: 24px;
-		    line-height: 1.4;
-		    font-weight: 200;
-		    color: #666;
-		}
-
-		#footer {
-			font-size: 12px;
-    		font-weight: 400;
-    		color: #999;
-    		margin-bottom: 20px;
-		}
-
-		#copyright {
-			float: left;
-		}
-
-		#footer ul {
-			float: right;
-			margin-top: 0;
-		}
-
-		#footer li {
-    		display: inline-block;
-		}
-
-		#footer li a {
-		    padding: 0 0.5em 0 0;
-		    margin-right: 0.333333em;
-		    border-right: 1px solid #e3e3e3;
-		    white-space: nowrap;
-		}
-
-		#footer a:visited, #footer a:link, #footer a:active {
-    		text-decoration: none;
-    		color: #999;
-		}
-
-		#footer a:hover {
-		    text-decoration: underline;
-		    color: #999;
-		}
-
-		#footer li:last-of-type a {
-		    border-right: none;
-		    margin-right: 0;
-		    padding-right: 0;
-		}		
-	</style>
 </head>
 <body>
 	<div style="width: 80%; margin: 0 auto">
-		<div id="header">
-			<div id="logo">exyte</div>
-			<div id="menu">
-				<a href="#details">What's this?</a>
+		<div class="header">
+			<img id="logo" src="img/logo.png" width="100" />
+			<div id="menu" class="button">
+				<a href="#details">Download</a>
 			</div>
 		</div>
 		<hr>
@@ -150,8 +28,23 @@
 	</div>
 
 	<div style="width: 80%; margin: 0 auto" id="details">
-		<h2>Sweet Java IDE</h2>
-		<p>New way to style your Eclipse IDE</p>
+		<h2>Sweet Eclipse</h2>
+		<p><a href="http://www.eclipse.org/">Eclipse</a> is an amazing open source platform and powerful IDE for dozens of programming languages
+		whose user interface doesn't change a lot for more than 10 years. Does this mean that Eclipse user experience stuck at the beginning of the century?</p>
+		<p><a href="https://github.com/exyte/sweet.eclipse/">Sweet Eclipse</a> is a project where reliable Eclipse platform meets modern UI techniques to provide better user experience. Is it even possible? Check out Sweet Java IDE and you'll be quite surprised.
+		</p>
+		<div id="download-all">
+			<a class="download" href="https://goo.gl/JyATXQ">Mac OS X 64 bit</a>
+			<a class="download" href="https://www.dropbox.com/s/m13h4yjdebalrvt/sweet-java-win32.win32.x86.zip?dl=1">Windows 32 bit</a>
+			<a class="download" href="https://www.dropbox.com/s/t9jd6xjxi59ql4f/sweet-java-win32.win32.x86_64.zip?dl=1">Windows 64 bit</a>
+		</div>
+		<h2>What's next?</h2>
+		<p>That's just the beginning of the long trip to make Eclipse a better place to work. Want to stay with us? Leave your email below and
+		we will keep you informed about project updates. We promise not to bother you too often.</p>
+		<div id="subsribe" class="button">
+			<input type="text" placeholder="Enter your email">
+			<a href="/subscribe">Subscribe</a>
+		</div>
 		<hr>
 		<div id="footer">
 			<div id="copyright">Copyright © 2016 exyte. All rights reserved.</div>

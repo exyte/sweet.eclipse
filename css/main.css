@@ -1,0 +1,183 @@
+body {
+	-webkit-font-smoothing: antialiased;
+	font-family: "Myriad Set Pro", "PT Sans", "Lucida Grande", "Helvetica Neue", "Helvetica", "Arial", "Verdana", "sans-serif";
+}
+
+a:visited, a:link, a:active {
+	text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a {
+	color: #0088CC;
+	font-size: inherit;
+	cursor: pointer;
+}		
+
+.header {
+	font-size: 14px;
+	font-weight: normal;
+	overflow:auto;
+}
+
+.header a {
+	padding-left: 2em;
+	line-height: 1.4737em;
+	color: #333333;
+}
+
+.header a:hover {
+    color: #0088CC;
+}
+
+#logo {
+	float:left;
+	margin-top: 5px;
+}
+
+#menu {
+	margin-top: 15px;
+	float:right;
+	font-size: 13px;
+}
+
+h2 {
+	font-size: 36pt;
+	line-height: 1.08654;
+	letter-spacing: -0.014em;
+	font-weight: 200;
+	margin-top: 1.1em;
+	margin-bottom: 0.45em;
+}
+
+p {
+	font-size: 16pt;
+    line-height: 1.4;
+    font-weight: 200;
+    color: #666;
+}
+
+#footer {
+	font-size: 12px;
+	font-weight: 400;
+	color: #999;
+	margin-bottom: 20px;
+}
+
+#copyright {
+	float: left;
+}
+
+#footer ul {
+	float: right;
+	margin-top: 0;
+}
+
+#footer li {
+	display: inline-block;
+}
+
+#footer li a {
+    padding: 0 0.5em 0 0;
+    margin-right: 0.333333em;
+    border-right: 1px solid #e3e3e3;
+    white-space: nowrap;
+}
+
+#footer a:visited, #footer a:link, #footer a:active, #footer a:hover {
+	color: #999;
+}
+
+#footer li:last-of-type a {
+    border-right: none;
+    margin-right: 0;
+    padding-right: 0;
+}
+
+#download-all {
+  margin: auto;
+  margin-top: 50px;
+  width: 555px;
+  height: 40px;
+}
+
+#subsribe {
+  margin: auto;
+  width: 350px;
+}
+
+a.download {
+  margin-right: 10px;
+  font-family: Helvetica, Arial, Verdana, sans-serif;
+  margin-left:20px;
+  text-decoration:none;
+  color:#FFF;
+  font-weight:bold;
+  border:1px solid #279ade;
+  border-radius:3px;
+  text-align:center;
+  font-size:100%;
+  background: #4ec2fd; /* Old browsers */
+  background: -moz-linear-gradient(top, #4ec2fd 0%, #279ade 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#4ec2fd), color-stop(100%,#279ade)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #4ec2fd 0%,#279ade 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #4ec2fd 0%,#279ade 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #4ec2fd 0%,#279ade 100%); /* IE10+ */
+  background: linear-gradient(to bottom, #4ec2fd 0%,#279ade 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4ec2fd', endColorstr='#279ade',GradientType=0 ); /* IE6-9 */
+  text-shadow: 1px 1px 1px #2799e0;
+  box-shadow:0px 2px 2px #888;
+  padding: 15px 15px;
+}
+
+a.download:hover {
+  background: #2EB9FF; /* Old browsers */
+  background: -moz-linear-gradient(top, #2EB9FF 0%, #1290DB 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#2EB9FF), color-stop(100%,#1290DB)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #2EB9FF 0%,#1290DB 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #2EB9FF 0%,#1290DB 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #2EB9FF 0%,#1290DB 100%); /* IE10+ */
+  background: linear-gradient(to bottom, #2EB9FF 0%,#1290DB 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2EB9FF', endColorstr='#1290DB',GradientType=0 ); /* IE6-9 */
+}
+
+.button a:visited, .button a:link, .button a:active, .button a:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+.button a {
+	border-radius: 3px;
+	border: 1px solid #1482d0;
+    background: #2189db;
+    background-image: -webkit-linear-gradient(top, #42a1ec 0%, #0070c9 100%);
+    background-image: linear-gradient(to bottom, #42a1ec 0%, #0070c9 100%);
+    text-shadow: 0 1px 1px rgba(28, 115, 184, 0.64);
+    color: #fff;
+    padding: 0 10px;
+    position: relative;
+    line-height: 1.54615;
+}
+
+.button a:hover {
+	background: #3392de;
+	background: -webkit-linear-gradient(#51a9ee, #147bcd);
+	background: linear-gradient(#51a9ee, #147bcd);
+}
+
+input {
+	width: 200px;
+	border: solid 1px #dcdcdc;
+    padding: 2px 3px;
+    margin-right: 10px;
+}
+
+#subsribe a {
+	display: inline-block;
+	text-align: center;
+	width: 125px;
+    padding: 0;
+}
