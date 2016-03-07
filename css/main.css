@@ -98,15 +98,21 @@ p {
 }
 
 #download-all {
-  margin: auto;
-  margin-top: 50px;
-  width: 555px;
-  height: 40px;
+	display: flex;
+	justify-content: center;
+	flex-flow: row wrap;
+	margin-top: 50px;
 }
 
 #subsribe {
-  margin: auto;
-  width: 350px;
+	display: flex;
+	justify-content: center;
+	flex-flow: row wrap;
+	margin-bottom: 30px;
+}
+
+.download {
+	margin-bottom: 10px;
 }
 
 a.download {
@@ -169,7 +175,7 @@ a.download:hover {
 }
 
 input {
-	width: 200px;
+	width: 150px;
 	border: solid 1px #dcdcdc;
     padding: 2px 3px;
     margin-right: 10px;
