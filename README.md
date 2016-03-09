@@ -1,20 +1,23 @@
-The EPP Build
+Sweet Eclipse
 =============
 
-The [Eclipse Packaging Project (EPP)](http://www.eclipse.org/epp/) provides 
-the download packages based on the content of the yearly Simultaneous Release. 
-The download packages are provided from 
-[www.eclipse.org/downloads/](http://www.eclipse.org/downloads/).
+Sweet Eclipse is a project in which the reliable Eclipse platform meets modern UI techniques to provide better user experience.
+
+![Solarized Theme](http://exyte.github.io/sweet.eclipse/img/app1.png)
+![Dark Theme](http://exyte.github.io/sweet.eclipse/img/app2.png)
+![Idea Darcula Theme](http://exyte.github.io/sweet.eclipse/img/app3.png)
+
+Check out [Sweet Eclipse website](http://exyte.github.io/sweet.eclipse/) for more information.
 
 Build a Package Locally
 -----------------------
 
 It's *easy* to run the build locally! All you need is Maven and then you need 
-to tell Maven which package(s) to build via profile. As an example, the following 
-command from the root of the Git repository builds the RCP/RAP package against 
-the Simultaneous Release staging p2 repository:
+to tell Maven which package(s) to build via profile. Currently we provide
+only java package against Eclipse Mars.1 (4.5.1). You can build it using following 
+command from the root of the Git repository:
 
-    mvn clean verify -Psweet.package.java
+    mvn clean verify -Psweet.package.java -Declipse.simultaneous.release.repository="http://download.eclipse.org/releases/mars/201510021000"
 
 This build creates output in two places:
 
@@ -37,32 +40,4 @@ In addition to that it is not possible to create zip and tar.gz archives on
 Windows due to missing Bash scripting capabilities. On Windows, the output of the
 build is the `eclipse` directory that contains the usual content from the zip
 archive. This directory can be found below (e.g. RCP package) 
-`packages/org.eclipse.epp.package.rcp.product/target/products/`.
-
-Available Profiles
-------------------
-
-Each package uses its own profile:
-
-- sweet.package.java
-
-With the signing profiles enabled, the build artifacts (bundles, features) and the
-Windows and Mac OSX executables are signed. This is done by using the Eclipse Foundation 
-internal signing service and can be activated only if the build is running there.
-
-- eclipse-sign-jar profile enables signing of the EPP bundles and jar files
-- eclipse-sign-mac profile enables usage of Mac OSX signing service
-- eclipse-sign-windows profile enables usage of Windows signing service
-
-Additional Configuration Possibilities
---------------------------------------
-
-By default, the EPP build uses the content of the Eclipse Simultaneous Release *Staging*
-repository at <http://download.eclipse.org/releases/staging/> as input. Sometimes it is
-desired to build against another release (e.g. a different milestone), or against a local
-mirror of this repository. This can be achieved by setting the Java property
-`eclipse.simultaneous.release.repository`to another URL. As an example, by adding the
-following argument to the Maven command line, the EPP build will read its input from the
-composite Eclipse Mars repository:
-
-    -Declipse.simultaneous.release.repository="http://download.eclipse.org/releases/mars"
+`packages/com.exyte.sweet.package.java.product/target/products/`.
