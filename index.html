@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="css/ideal-image-slider.css">
 	<link rel="stylesheet" href="css/default.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/main.css">
 	<link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
 </head>
@@ -41,7 +42,7 @@
 		<p>That's just the beginning of the long trip to make Eclipse a better IDE. Want to stay with us? Leave your email below and we will keep you informed about future project updates. We promise not to bother you too often.</p>
 		<div id="subsribe" class="button">
 			<input id="email" type="text" placeholder="Enter your email">
-			<a id="subscribeButton" href="/subscribe">Subscribe</a>
+			<a id="subscribeButton" href="#subscribe">Subscribe</a>
 		</div>
 		<hr>
 		<div id="footer">
@@ -49,24 +50,52 @@
 			<ul><li><a href="mailto:info@exyte.com">Contact Us</a></li><li><a href="https://github.com/exyte/sweet.eclipse/">View on Github</a></li></ul>
 		</div>
 	</div>	
+
+	<!-- Modal -->
+	<div class="modal fade" id="subscribeDialog" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Thank you!</h4>
+				</div>
+				<div class="modal-body">
+					<p>You have successfully subscribed to Sweet Eclipse updates!</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<script src="js/ideal-image-slider.min.js"></script>
 	<script src="js/jquery-2.2.1.min.js"></script>
-
+	<script src="js/bootstrap.min.js"></script>
 <script>
 var slider = new IdealImageSlider.Slider('#slider');
 slider.start();
 $(document).ready(function () {
-    $("#subscribeButton").bind('click', function (e) {
-        e.preventDefault();
-        var email = $("#email").val();
-		$.ajax({
-			type: "POST",
-			url: "http://46.101.171.107:3000/collect",
-			data: {"email": email},
-			success: function(data) { $("#email").val(""); alert("Thanks!");  },
-			error: function(data) { $("#email").val(""); alert("Thanks!"); }
-		});
-    });
+	var onSubscribe = function (e) {
+		e.preventDefault();
+		var email = $("#email").val();
+		if (email) {
+			$("#email").val("");
+			$("#subscribeDialog").modal();
+			$.ajax({
+				type: "POST",
+				url: "http://46.101.171.107:3000/collect",
+				data: {"email": email}
+			});
+		}
+	};
+	$("#subscribeButton").bind('click', onSubscribe);
+	$("#email").keypress(function(e) {
+		if (e.which == 13) {
+			onSubscribe(e);
+		}
+	});
 });
 </script>
 <script>
