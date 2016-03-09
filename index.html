@@ -29,9 +29,8 @@
 
 	<div style="width: 80%; margin: 0 auto" id="details">
 		<h2>Sweet Eclipse</h2>
-		<p><a href="http://www.eclipse.org/">Eclipse</a> is an amazing open source platform and powerful IDE for dozens of programming languages
-		whose user interface doesn't change a lot for more than 10 years. Does this mean that Eclipse user experience stuck at the beginning of the century?</p>
-		<p><a href="https://github.com/exyte/sweet.eclipse/">Sweet Eclipse</a> is a project where reliable Eclipse platform meets modern UI techniques to provide better user experience. Is it even possible? Check out Sweet Java IDE and you'll be quite surprised.
+		<p><a href="http://www.eclipse.org/">Eclipse</a> is an amazing open source platform and a powerful IDE for dozens of programming languages whose user interface hasn’t changed a lot for over 10 years. Does this mean that the Eclipse user experience is stuck in the beginning of the century?</p>
+		<p><a href="https://github.com/exyte/sweet.eclipse/">Sweet Eclipse</a> is a project in which the reliable Eclipse platform meets modern UI techniques to provide better user experience. Is this even possible? Check out Sweet Java IDE and you'll be quite surprised.
 		</p>
 		<div id="download-all">
 			<a class="download" href="https://goo.gl/JyATXQ">Mac OS X 64 bit</a>
@@ -39,11 +38,10 @@
 			<a class="download" href="https://www.dropbox.com/s/t9jd6xjxi59ql4f/sweet-java-win32.win32.x86_64.zip?dl=1">Windows 64 bit</a>
 		</div>
 		<h2>What's next?</h2>
-		<p>That's just the beginning of the long trip to make Eclipse a better place to work. Want to stay with us? Leave your email below and
-		we will keep you informed about project updates. We promise not to bother you too often.</p>
+		<p>That's just the beginning of the long trip to make Eclipse a better IDE. Want to stay with us? Leave your email below and we will keep you informed about future project updates. We promise not to bother you too often.</p>
 		<div id="subsribe" class="button">
-			<input type="text" placeholder="Enter your email">
-			<a href="/subscribe">Subscribe</a>
+			<input id="email" type="text" placeholder="Enter your email">
+			<a id="subscribeButton" href="/subscribe">Subscribe</a>
 		</div>
 		<hr>
 		<div id="footer">
@@ -52,10 +50,24 @@
 		</div>
 	</div>	
 	<script src="js/ideal-image-slider.min.js"></script>
+	<script src="js/jquery-2.2.1.min.js"></script>
 
 <script>
 var slider = new IdealImageSlider.Slider('#slider');
 slider.start();
+$(document).ready(function () {
+    $("#subscribeButton").bind('click', function (e) {
+        e.preventDefault();
+        var email = $("#email").val();
+		$.ajax({
+			type: "POST",
+			url: "http://46.101.171.107:3000/collect",
+			data: {"email": email},
+			success: function(data) { $("#email").val(""); alert("Thanks!");  },
+			error: function(data) { $("#email").val(""); alert("Thanks!"); }
+		});
+    });
+});
 </script>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
