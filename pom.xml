@@ -41,6 +41,14 @@
         <module>packages/com.exyte.sweet.package.java.product</module>
       </modules>
     </profile>
+    <profile>
+      <id>sweet.package.modeling</id>
+      <modules>
+        <module>packages/com.exyte.sweet.package.modeling</module>
+        <module>packages/com.exyte.sweet.package.modeling.feature</module>
+        <module>packages/com.exyte.sweet.package.modeling.product</module>
+      </modules>
+    </profile>
   </profiles>
 
 </project>

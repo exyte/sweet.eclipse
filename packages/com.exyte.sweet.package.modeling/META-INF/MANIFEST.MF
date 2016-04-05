@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: EPP Modeling Bundle
+Bundle-SymbolicName: com.exyte.sweet.package.modeling;singleton:=true
+Bundle-Version: 4.5.1.qualifier
+Bundle-Vendor: Eclipse Packaging Project
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: org.eclipse.platform,
+ org.eclipse.equinox.app,
+ com.exyte.sweet.e4.workbench,
+ org.eclipse.ui
+Eclipse-BundleShape: dir

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.exyte.sweet.package.modeling.feature"
+      label="EPP Modeling Feature"
+      version="4.5.1.qualifier"
+      provider-name="Eclipse Packaging Project"
+      plugin="com.exyte.sweet.package.modeling"
+      license-feature="org.eclipse.license"
+      license-feature-version="0.0.0">
+
+   <description url="http://eclipse.org/epp">
+      %description
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <url>
+      <discovery label="Mars" url="http://download.eclipse.org/releases/mars/"/>
+      <discovery label="Eclipse Platform 4.5" url="http://download.eclipse.org/eclipse/updates/4.5"/>
+      <discovery label="Sweet" url="http://exyte.com/sweet/updates/"/>
+      <discovery label="Sweet E4" url="http://exyte.com/sweet.e4/updates/"/>
+   </url>
+
+   <!--includes
+         id="org.eclipse.platform"
+         version="0.0.0"
+         search-location="both"/-->
+
+   <requires>
+      <import feature="org.eclipse.equinox.p2.user.ui"/>
+      <import feature="org.eclipse.help"/>
+      
+      <!--import feature="org.eclipse.jdt"/-->
+      <import feature="com.exyte.sweet.e4.jdt.feature"/>
+      
+      <import feature="org.eclipse.pde"/>
+      
+      <!--import feature="org.eclipse.sdk"/-->
+      <import feature="com.exyte.sweet.e4.sdk.feature"/>
+      
+      <import feature="org.eclipse.e4.core.tools.feature"/>
+      
+      <!--import feature="org.eclipse.rcp"/-->
+      <import feature="com.exyte.sweet.e4.feature"/>
+      <import feature="com.exyte.sweet.e4.platform.feature"/>
+      <import feature="com.exyte.sweet.e4.rcp.feature"/>
+      
+      <!--import feature="org.eclipse.mylyn.ide_feature"/>
+      <import feature="org.eclipse.mylyn.java_feature"/>
+      <import feature="org.eclipse.mylyn.pde_feature"/>
+      <import feature="org.eclipse.mylyn.bugzilla_feature"/>
+      <import feature="org.eclipse.mylyn.context_feature"/>
+      <import feature="org.eclipse.mylyn_feature"/>
+      <import feature="org.eclipse.mylyn.wikitext_feature"/-->
+      <import feature="org.eclipse.emf.sdk"/>
+      <import feature="org.eclipse.gef.sdk"/>
+      <import feature="org.eclipse.uml2.sdk"/>
+      <import feature="org.eclipse.ocl.all.sdk"/>
+      <import feature="org.eclipse.emf.transaction.sdk"/>
+      <import feature="org.eclipse.emf.ecoretools.design" version="3.0.0" match="compatible"/>
+      <import feature="org.eclipse.emf.query.sdk"/>
+      <import feature="org.eclipse.xsd.sdk"/>
+      <import feature="org.eclipse.emf.validation.sdk"/>
+      <import feature="org.eclipse.emf.compare.source"/>
+      <import feature="org.eclipse.emf.compare.ide.ui.source"/>
+      <import feature="org.eclipse.amalgam.discovery"/>
+      <import feature="org.eclipse.emf.cdo.epp" />
+      <import feature="org.eclipse.gmf.runtime.sdk"/>
+      <import feature="org.eclipse.egit"/>
+      <import feature="org.eclipse.egit.import"/>
+      <import feature="org.eclipse.emf.eef.codegen.ecore-feature"  version="1.2.0.qualifier" match="compatible"/>
+      <import feature="org.eclipse.epp.package.common.feature"/>
+      <import feature="org.eclipse.emf.ecp.sdk.feature"/>
+      <import feature="org.eclipse.emf.emfstore.sdk.feature"/>
+   </requires>
+
+   <plugin
+         id="com.exyte.sweet.package.modeling"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+</feature>
